@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Search Product</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+<div class="container">
+  <h2 style="text-align: center">Search Product</h2>
+  <br>
+  <br>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Color</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="product,loop: ${products}">
+      <td th:text="${product.id}"></td>
+      <td th:text="${product.name}"></td>
+      <td th:text="${product.price}"></td>
+      <td th:text="${product.amount}"></td>
+      <td th:text="${product.color}"></td>
+      <td th:text="${product.description}"></td>
+      <td th:text="${product.name_cate}"></td>
+      <td><a th:href="@{/{id}/edit(id=${loop.index})}" class="btn btn-warning">Edit</a></td>
+      <td><a onclick=" return confirm('Bạn có muốn xóa???')" th:href="@{/{id}/delete(id=${loop.index})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+
+
+    </tbody>
+  </table>
+</div>
+<div th:replace="/layout :: footer"></div>
+</body>
+</html>
